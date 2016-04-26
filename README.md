@@ -81,4 +81,70 @@ test.json
     
 **现在可以使用 local res = require 'test' 加载资源**
 
-##XML 开发中。。。
+##XML
+
+test.xml
+
+    <plist version="1.0">
+        <dict>
+            <key>frames</key>
+            <dict>
+                <key>black-dog-000.jpg</key>
+            </dict>
+        </dict>
+    </plist>
+    
+**运行：** cat test.xml|./xml > test.lua
+
+test.lua
+
+    local retXML = {
+    	["name"] = "plist",
+    	["type"] = "NT_GROUP",
+    	["children"] = {
+    		[1] = {
+    			["name"] = "dict",
+    			["type"] = "NT_GROUP",
+    			["children"] = {
+    				[1] = {
+    					["name"] = "key",
+    					["type"] = "NT_TEXT",
+    					["text"] = "frames",
+    					["attrs"] = {
+    					}
+    				},
+    				[2] = {
+    					["name"] = "dict",
+    					["type"] = "NT_GROUP",
+    					["children"] = {
+    						[1] = {
+    							["name"] = "key",
+    							["type"] = "NT_TEXT",
+    							["text"] = "black-dog-000.jpg",
+    							["attrs"] = {
+    							}
+    						}
+    					},
+    					["attrs"] = {
+    					}
+    				}
+    			},
+    			["attrs"] = {
+    			}
+    		}
+    	},
+    	["attrs"] = {
+    		["version"] = "1.0"
+    	}
+    }
+    return retXML
+    
+##缺陷
+生成的lua文件比原始文件（xml或json）更大。
+
+可以使用luac编译生成的lua，相当于对资源加密和压缩，但依然比原始文件大（哎呀我操）。
+
+以往任何对lua代码使用的手段，现在都可以对资源文件使用了。
+
+lua引擎加载资源，比我手写的xml解析快多了。。。但和libxml或别的库相比，快不快不知道。。。我没试过。。
+
