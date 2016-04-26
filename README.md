@@ -1,6 +1,6 @@
 #reslua
 
-本工具，是为了我的[JXM 2D游戏框架](https://github.com/niu2x/jxm)而写的。
+##本工具，是为了我的[JXM 2D游戏框架](https://github.com/niu2x/jxm)而写的。
 
 许多工具导出的资源描述是xml、json等，游戏是lua写的。
 
