@@ -80,3 +80,5 @@ test.json
     return retJSON
     
 **现在可以使用 local res = require 'test' 加载资源**
+
+##XML 开发中。。。
