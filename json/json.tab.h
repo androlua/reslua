@@ -45,8 +45,9 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NUMBER = 258,
-    STRING = 259
+    BOOLEAN = 258,
+    NUMBER = 259,
+    STRING = 260
   };
 #endif
 
@@ -59,10 +60,11 @@ union YYSTYPE
 
 	char *string;
 	float number;
+	int boolean;
 	struct Node *node;
 	struct ItemNode *itemNode;
 
-#line 66 "json.tab.h" /* yacc.c:1909  */
+#line 68 "json.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

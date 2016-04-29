@@ -13,9 +13,11 @@ struct Node{
 	enum {
 		NT_NUMBER,
 		NT_STRING,
-		NT_GROUP	
+		NT_GROUP,
+		NT_BOOLEAN
 	}type;
 	union{
+		int boolean;
 		float number;
 		char *string;
 		struct ItemNode *children;
@@ -27,6 +29,7 @@ void printInLua(struct Node *, int);
 
 struct Node * newStringNode(char *);
 struct Node * newNumberNode(float );
+struct Node * newBooleanNode(int);
 struct Node * newGroupNode(struct ItemNode *);
 
 struct ItemNode * ItemNodeListPrepend(struct ItemNode *, struct ItemNode *);

@@ -27,6 +27,11 @@ void printChar(int count, char c){
 	}
 }
 
+static char * booleanStrings[] = {
+	"false",
+	"true"
+};
+
 void printInLua(struct Node *node, int deep){
 	if(deep == 0){
 		printf("local retJSON = ");
@@ -37,6 +42,9 @@ void printInLua(struct Node *node, int deep){
 			break;
 		case NT_STRING:
 			printf("\"%s\"", node->string);
+			break;
+		case NT_BOOLEAN:
+			printf("\"%s\"", booleanStrings[node->boolean]);
 			break;
 		case NT_GROUP:{
 				struct ItemNode *list;
@@ -89,6 +97,20 @@ struct Node * newNumberNode(float number){
 		exit(1);
 	}
 }
+
+struct Node * newBooleanNode(int boolean){
+	struct Node *node = malloc(sizeof(struct Node));
+	if(node != 0){
+		node->type = NT_BOOLEAN;
+		node->boolean = boolean;
+		return node;
+	}
+	else{
+		fprintf(stderr, "memory alloc failed.\n");
+		exit(1);
+	}
+}
+
 struct Node * newGroupNode(struct ItemNode *itemNode){
 	struct Node *node = malloc(sizeof(struct Node));
 	if(node != 0){

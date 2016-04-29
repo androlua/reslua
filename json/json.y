@@ -8,10 +8,12 @@
 %union{
 	char *string;
 	float number;
+	int boolean;
 	struct Node *node;
 	struct ItemNode *itemNode;
 };
 
+%token <boolean> BOOLEAN;
 %token <number> NUMBER
 %token <string> STRING
 
@@ -26,6 +28,7 @@ json:	json1 {$$ = $1; printInLua($$, 0); freeNode($$);}
 
 json1:	STRING	{$$ = newStringNode($1);}
 	|	NUMBER	{$$ = newNumberNode($1);}
+	|	BOOLEAN {$$ = newBooleanNode($1);}
 	;
 
 json2:	'{' '}'	{$$ = newGroupNode(0);}
