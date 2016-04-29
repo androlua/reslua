@@ -44,7 +44,7 @@ void printInLua(struct Node *node, int deep){
 			printf("\"%s\"", node->string);
 			break;
 		case NT_BOOLEAN:
-			printf("\"%s\"", booleanStrings[node->boolean]);
+			printf("%s", booleanStrings[node->boolean]);
 			break;
 		case NT_GROUP:{
 				struct ItemNode *list;
