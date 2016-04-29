@@ -1,7 +1,14 @@
-#reslua
+#reslua 
+
+##xml、json 到 lua的转换工具。
+
+**本工具，是为了我的[JXM 2D游戏框架](https://github.com/niu2x/jxm)而写的。**
+
 许多工具导出的资源描述是xml、json等，游戏是lua写的。
 
-lua的一个优势就是既可以写逻辑，也可以写配置，如果资源描述也是lua的话，我就不用花时间找库去在运行时解析json、xml。
+lua的一个优势就是既可以写逻辑，也可以写配置。
+
+如果资源描述也是lua的话，我就不用花时间找库去在运行时解析json、xml。
 
 ##本工具的目标
 像一个编译器一样工作，把xml、json提前转换成lua格式。
@@ -81,4 +88,70 @@ test.json
     
 **现在可以使用 local res = require 'test' 加载资源**
 
-##XML 开发中。。。
+##XML
+
+test.xml
+
+    <plist version="1.0">
+        <dict>
+            <key>frames</key>
+            <dict>
+                <key>black-dog-000.jpg</key>
+            </dict>
+        </dict>
+    </plist>
+    
+**运行：** cat test.xml|./xml > test.lua
+
+test.lua
+
+    local retXML = {
+    	["name"] = "plist",
+    	["type"] = "NT_GROUP",
+    	["children"] = {
+    		[1] = {
+    			["name"] = "dict",
+    			["type"] = "NT_GROUP",
+    			["children"] = {
+    				[1] = {
+    					["name"] = "key",
+    					["type"] = "NT_TEXT",
+    					["text"] = "frames",
+    					["attrs"] = {
+    					}
+    				},
+    				[2] = {
+    					["name"] = "dict",
+    					["type"] = "NT_GROUP",
+    					["children"] = {
+    						[1] = {
+    							["name"] = "key",
+    							["type"] = "NT_TEXT",
+    							["text"] = "black-dog-000.jpg",
+    							["attrs"] = {
+    							}
+    						}
+    					},
+    					["attrs"] = {
+    					}
+    				}
+    			},
+    			["attrs"] = {
+    			}
+    		}
+    	},
+    	["attrs"] = {
+    		["version"] = "1.0"
+    	}
+    }
+    return retXML
+    
+##Tips
+- 生成的lua文件比原始文件（xml或json）更大。
+
+- 可以使用luac编译生成的lua，相当于对资源加密和压缩，但依然比原始文件大（哎呀我操）。
+
+- 以往任何对lua代码使用的手段（比如自定义load函数），现在对资源文件也起作用了。（也许这没什么卵用。。）
+
+- lua引擎加载资源，比我手写的xml解析快多了。。。但和libxml或别的库相比，快不快不知道。。。我没试过。。
+
