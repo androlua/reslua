@@ -45,6 +45,7 @@ attrList:	 {$$ = 0;}
 	;
 
 attr:	NAME '=' STRING {$$ = newAttrNode($1, $3); }
+	|	NAME '=' {$$ = newAttrNode($1, strdup(""));}
 	;
 
 %%

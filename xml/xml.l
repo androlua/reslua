@@ -1,6 +1,8 @@
 %option noyywrap
 
 %x IN
+%x COMMENT
+%x INSTRING
 
 %{
 
@@ -10,6 +12,12 @@
 %}
 
 %%
+
+\<!\-\- {BEGIN COMMENT;}
+<COMMENT>\-\-\> {BEGIN INITIAL;}
+<COMMENT>. {}
+<COMMENT>\n {}
+
 
 <IN>[ \t] {}
 <IN>\n {}
@@ -26,7 +34,11 @@
 
 <IN>[^\"!\+\-\{\}\[\]\\,\.\?\<\>\t\n\r\=\/ ]+	{yylval.string = strdup(yytext); return NAME;}
 
-<IN>\"[^\"]*\"	{yytext[strlen(yytext)-1]=0; yylval.string = strdup(yytext+1); return STRING;}
+<IN>\" {BEGIN INSTRING;}
+<INSTRING>\" {BEGIN IN;}
+<INSTRING>[^\"]+ {yylval.string = strdup(yytext); return STRING;};
+
+
 
 [ \t\n\r]+ {}
 

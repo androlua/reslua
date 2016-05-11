@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<font>
+  <info face="宋体" size="32" bold="1" italic="" charset="f" unicode="1" stretchH="100" smooth="1" aa="1" padding="0,0,0,0" spacing="1,1" outline="0"/>
+  <common lineHeight="33" base="28" scaleW="1024" scaleH="1024" pages="4" packed="0" alphaChnl="1" redChnl="0" greenChnl="0" blueChnl="0"/>
+  <pages>
+    <page id="0" file="base_0.png" />
+    <page id="1" file="base_1.png" />
+    <page id="2" file="base_2.png" />
+    <page id="3" file="base_3.png" />
+  </pages>
+  <chars count="3619">
+   
+  </chars>
+</font>

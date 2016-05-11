@@ -387,7 +387,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  9
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  13
+#define YYNRULES  14
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  27
 
@@ -437,7 +437,7 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    23,    23,    25,    26,    27,    30,    31,    34,    37,
-      40,    43,    44,    47
+      40,    43,    44,    47,    48
 };
 #endif
 
@@ -486,7 +486,7 @@ static const yytype_int8 yypact[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     0,     0,     2,     3,     6,    11,     1,     0,     0,
-       0,     0,    11,     0,     4,     0,     7,     5,     0,     0,
+       0,     0,    11,     0,     4,     0,     7,     5,    14,     0,
       10,    12,     0,    13,     8,     0,     9
 };
 
@@ -532,14 +532,14 @@ static const yytype_uint8 yystos[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    10,    11,    12,    12,    12,    13,    13,    14,    15,
-      16,    17,    17,    18
+      16,    17,    17,    18,    18
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     1,     1,     3,     3,     0,     2,     5,     4,
-       4,     0,     2,     3
+       4,     0,     2,     3,     2
 };
 
 
@@ -1287,8 +1287,14 @@ yyreduce:
 #line 1288 "xml.tab.c" /* yacc.c:1646  */
     break;
 
+  case 14:
+#line 48 "xml.y" /* yacc.c:1646  */
+    {(yyval.attrNode) = newAttrNode((yyvsp[-1].string), strdup(""));}
+#line 1294 "xml.tab.c" /* yacc.c:1646  */
+    break;
 
-#line 1292 "xml.tab.c" /* yacc.c:1646  */
+
+#line 1298 "xml.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1516,7 +1522,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 50 "xml.y" /* yacc.c:1906  */
+#line 51 "xml.y" /* yacc.c:1906  */
 
 
 int main(){
